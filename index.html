@@ -6,109 +6,275 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="title" content="HAPPY BIRTHDAY v3 | Aoudumber Bade">
     <meta name="github" content="https://github.com/Aoudumber-Bade">
-    <title>HAPPY BIRTHDAY AREEBA | BY SAEED </title>
+    <title>HAPPY BIRTHDAY v3 | Aoudumber Bade</title>
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="styles3.css">
-    <link rel="icon" href="img/flowers.png" type="image/x-icon">
     <style>
-        /* Body override styles */
-        body {
-            display: flex !important;
-            flex-direction: column !important;
-            justify-content: flex-start !important;
-            align-items: center !important;
-            min-height: 100vh !important;
-            padding: 15px !important;
-            box-sizing: border-box !important;
-            overflow-x: hidden !important;
+        /* Full Size Image Slider */
+        .fullsize-image-slider {
+            width: 100vw;
+            height: 400px;
+            position: relative;
+            overflow: hidden;
+            margin: 0;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
         }
-        
-        .birthday-content {
+
+        .fullsize-slider-track {
+            display: flex;
+            width: 900%;
+            height: 100%;
+            animation: fullSlide 27s infinite ease-in-out;
+        }
+
+        .fullsize-slide {
+            width: 11.11%;
+            height: 100%;
+            flex-shrink: 0;
+            position: relative;
+        }
+
+        .fullsize-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .fullsize-slide::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, rgba(0,0,0,0.1), transparent);
+        }
+
+        /* Slow Animation */
+        @keyframes fullSlide {
+            0% { transform: translateX(0); }
+            10% { transform: translateX(0); }
+            11.11% { transform: translateX(-11.11%); }
+            21.11% { transform: translateX(-11.11%); }
+            22.22% { transform: translateX(-22.22%); }
+            32.22% { transform: translateX(-22.22%); }
+            33.33% { transform: translateX(-33.33%); }
+            43.33% { transform: translateX(-33.33%); }
+            44.44% { transform: translateX(-44.44%); }
+            54.44% { transform: translateX(-44.44%); }
+            55.55% { transform: translateX(-55.55%); }
+            65.55% { transform: translateX(-55.55%); }
+            66.66% { transform: translateX(-66.66%); }
+            76.66% { transform: translateX(-66.66%); }
+            77.77% { transform: translateX(-77.77%); }
+            87.77% { transform: translateX(-77.77%); }
+            88.88% { transform: translateX(-88.88%); }
+            98.88% { transform: translateX(-88.88%); }
+            100% { transform: translateX(0); }
+        }
+
+        /* Fullsize Indicators */
+        .fullsize-slider-indicators {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 12px;
+            z-index: 100;
+        }
+
+        .fullsize-indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.4);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid rgba(255, 255, 255, 0.6);
+            animation: fullIndicatorPulse 27s infinite;
+        }
+
+        .fullsize-indicator:hover {
+            background: rgba(255, 255, 255, 0.8);
+            transform: scale(1.2);
+        }
+
+        /* Individual indicator timing for slow animation */
+        .fullsize-indicator:nth-child(1) { animation-delay: 0s; }
+        .fullsize-indicator:nth-child(2) { animation-delay: 3s; }
+        .fullsize-indicator:nth-child(3) { animation-delay: 6s; }
+        .fullsize-indicator:nth-child(4) { animation-delay: 9s; }
+        .fullsize-indicator:nth-child(5) { animation-delay: 12s; }
+        .fullsize-indicator:nth-child(6) { animation-delay: 15s; }
+        .fullsize-indicator:nth-child(7) { animation-delay: 18s; }
+        .fullsize-indicator:nth-child(8) { animation-delay: 21s; }
+        .fullsize-indicator:nth-child(9) { animation-delay: 24s; }
+
+        /* Indicator animation */
+        @keyframes fullIndicatorPulse {
+            0%, 88.88% { 
+                background: rgba(255, 255, 255, 0.4); 
+                transform: scale(1);
+                border-color: rgba(255, 255, 255, 0.6);
+            }
+            11.11% { 
+                background: rgba(255, 255, 255, 1); 
+                transform: scale(1.3);
+                border-color: rgba(255, 255, 255, 1);
+                box-shadow: 0 0 15px rgba(255, 255, 255, 0.8);
+            }
+        }
+
+        /* Pause on hover */
+        .fullsize-image-slider:hover .fullsize-slider-track {
+            animation-play-state: paused;
+        }
+
+        .fullsize-image-slider:hover .fullsize-indicator {
+            animation-play-state: paused;
+        }
+
+        /* Main content container */
+        .main-content {
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            flex: 1;
-            width: 100%;
+            min-height: calc(100vh - 400px);
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .fullsize-image-slider {
+                height: 300px;
+            }
+            
+            .main-content {
+                min-height: calc(100vh - 300px);
+                padding: 15px;
+            }
+            
+            .fullsize-slider-indicators {
+                bottom: 15px;
+                gap: 10px;
+            }
+            
+            .fullsize-indicator {
+                width: 10px;
+                height: 10px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .fullsize-image-slider {
+                height: 250px;
+            }
+            
+            .main-content {
+                min-height: calc(100vh - 250px);
+                padding: 10px;
+            }
+            
+            .fullsize-slider-indicators {
+                bottom: 12px;
+                gap: 8px;
+            }
+            
+            .fullsize-indicator {
+                width: 8px;
+                height: 8px;
+            }
+        }
+
+        /* Performance optimization */
+        .fullsize-slider-track {
+            will-change: transform;
+        }
+
+        .fullsize-indicator {
+            will-change: transform, background, box-shadow;
         }
     </style>
 </head>
 <body>
     
-    <!-- Image Slider -->
-    <div class="image-slider">
-        <div class="slider-track">
-            <div class="slide"><img src="img/1.jpg" alt="Memory 1"></div>
-            <div class="slide"><img src="img/2.jpg" alt="Memory 2"></div>
-            <div class="slide"><img src="img/3.jpg" alt="Memory 3"></div>
-            <div class="slide"><img src="img/4.jpg" alt="Memory 4"></div>
-            <div class="slide"><img src="img/5.jpg" alt="Memory 5"></div>
-            <div class="slide"><img src="img/6.jpg" alt="Memory 6"></div>
-            <div class="slide"><img src="img/7.jpg" alt="Memory 7"></div>
-            <div class="slide"><img src="img/8.jpg" alt="Memory 8"></div>
-            <div class="slide"><img src="img/9.jpg" alt="Memory 9"></div>
+    <!-- Full Size Image Slider -->
+    <div class="fullsize-image-slider">
+        <div class="fullsize-slider-track">
+            <div class="fullsize-slide"><img src="img/1.jpg" alt="Memory 1"></div>
+            <div class="fullsize-slide"><img src="img/2.jpg" alt="Memory 2"></div>
+            <div class="fullsize-slide"><img src="img/3.jpg" alt="Memory 3"></div>
+            <div class="fullsize-slide"><img src="img/4.jpg" alt="Memory 4"></div>
+            <div class="fullsize-slide"><img src="img/5.jpg" alt="Memory 5"></div>
+            <div class="fullsize-slide"><img src="img/6.jpg" alt="Memory 6"></div>
+            <div class="fullsize-slide"><img src="img/7.jpg" alt="Memory 7"></div>
+            <div class="fullsize-slide"><img src="img/8.jpg" alt="Memory 8"></div>
+            <div class="fullsize-slide"><img src="img/9.jpg" alt="Memory 9"></div>
         </div>
-        <div class="slider-indicators">
-            <div class="indicator"></div>
-            <div class="indicator"></div>
-            <div class="indicator"></div>
-            <div class="indicator"></div>
-            <div class="indicator"></div>
-            <div class="indicator"></div>
-            <div class="indicator"></div>
-            <div class="indicator"></div>
-            <div class="indicator"></div>
+        <div class="fullsize-slider-indicators">
+            <div class="fullsize-indicator"></div>
+            <div class="fullsize-indicator"></div>
+            <div class="fullsize-indicator"></div>
+            <div class="fullsize-indicator"></div>
+            <div class="fullsize-indicator"></div>
+            <div class="fullsize-indicator"></div>
+            <div class="fullsize-indicator"></div>
+            <div class="fullsize-indicator"></div>
+            <div class="fullsize-indicator"></div>
         </div>
     </div>
     
-    <!-- Birthday Content -->
-    <div class="birthday-content">
-    <div class="greetings" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 5px; margin: 10px 0;">
-        <span>H</span>
-        <span>A</span>
-        <span>P</span>
-        <span>P</span>
-        <span>Y</span>
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="greetings" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 5px; margin: 10px 0;">
+            <span>H</span>
+            <span>A</span>
+            <span>P</span>
+            <span>P</span>
+            <span>Y</span>
+        </div>
+        <div class="greetings" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 5px; margin: 10px 0;">
+            <span>B</span>
+            <span>I</span>
+            <span>R</span>
+            <span>T</span>
+            <span>H</span>
+            <span>D</span>
+            <span>A</span>
+            <span>Y</span>
+        </div>
+        <div class="greetings" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 5px; margin: 10px 0;">
+            <span>A</span>
+            <span>R</span>
+            <span>E</span>
+            <span>E</span>
+            <span>B</span>
+            <span>A</span>
+            <span>😍</span>
+            <span>K</span>
+            <span>H</span>
+            <span>A</span>
+            <span>N</span>
+            <span>💝</span>
+        </div>
+        <div style="text-align: center; max-width: 95%; word-wrap: break-word;" class="description">
+            <span>Wishing you a day filled with love and joy! 🎉🎂<br> </span>
+            <span><br>To my forever favorite, Areeb Akhan! 📸 Happy Birthday, love! Six years of capturing beautiful moments together, <br> and you're still the most photogenic part of every memory.<br> Like a perfectly exposed film, you bring light into every dark room of life. <br>May your birthday be as timeless and beautiful as our love story! 🎞️✨</span>
+        </div>
+        <!-- Button -->
+        <div style="position: relative; margin-top: 20px; width: 100%; display: flex; justify-content: center;">
+            <a href="./heartcaputre.html" class="btn">
+                <svg height="24" width="24" fill="#FFFFFF" viewBox="0 0 24 24" data-name="Layer 1" id="Layer_1" class="sparkle">
+                    <path d="M10,21.236,6.755,14.745.264,11.5,6.755,8.255,10,1.764l3.245,6.491L19.736,11.5l-6.491,3.245ZM18,21l1.5,3L21,21l3-1.5L21,18l-1.5-3L18,18l-3,1.5ZM19.333,4.667,20.5,7l1.167-2.333L24,3.5,21.667,2.333,20.5,0,19.333,2.333,17,3.5Z">
+                    </path>
+                </svg>
+                <span class="text">OPEN</span>
+            </a>
+        </div>
     </div>
-    <div class="greetings" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 5px; margin: 10px 0;">
-        <span>B</span>
-        <span>I</span>
-        <span>R</span>
-        <span>T</span>
-        <span>H</span>
-        <span>D</span>
-        <span>A</span>
-        <span>Y</span>
-    </div>
-    <div class="greetings" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 5px; margin: 10px 0;">
-        <span>A</span>
-        <span>R</span>
-        <span>E</span>
-        <span>E</span>
-        <span>B</span>
-        <span>A</span>
-        <span>😍</span>
-        <span>K</span>
-        <span>H</span>
-        <span>A</span>
-        <span>N</span>
-        <span>💝</span>
-    </div>
-    <div style="text-align: center; max-width: 95%; word-wrap: break-word;" class="description">
-        <span>Wishing you a day filled with love and joy! 🎉🎂<br> </span>
-        <span><br>To my forever favorite, Areeb Akhan! 📸 Happy Birthday, love! Six years of capturing beautiful moments together, <br> and you're still the most photogenic part of every memory.<br> Like a perfectly exposed film, you bring light into every dark room of life. <br>May your birthday be as timeless and beautiful as our love story! 🎞️✨</span>
-    </div>
-    <!-- Button -->
-    <div style="position: relative; margin-top: 20px; width: 100%; display: flex; justify-content: center;">
-        <a href="./heartcaputre.html" class="btn">
-            <svg height="24" width="24" fill="#FFFFFF" viewBox="0 0 24 24" data-name="Layer 1" id="Layer_1" class="sparkle">
-                <path d="M10,21.236,6.755,14.745.264,11.5,6.755,8.255,10,1.764l3.245,6.491L19.736,11.5l-6.491,3.245ZM18,21l1.5,3L21,21l3-1.5L21,18l-1.5-3L18,18l-3,1.5ZM19.333,4.667,20.5,7l1.167-2.333L24,3.5,21.667,2.333,20.5,0,19.333,2.333,17,3.5Z">
-                </path>
-            </svg>
-            <span class="text">OPEN</span>
-        </a>
-    </div>
-    <!-- Credits -->
-    </div>
+    
 </body>
 </html>
