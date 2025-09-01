@@ -1,0 +1,151 @@
+/* Image Slider Styles - styles3.css */
+.image-slider {
+    width: 100%;
+    max-width: 800px;
+    height: 200px;
+    overflow: hidden;
+    position: relative;
+    margin: 20px auto 30px auto;
+    border-radius: 15px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+    z-index: 10;
+}
+
+.slider-track {
+    display: flex;
+    width: 900%;
+    height: 100%;
+    animation: slide 18s infinite linear;
+}
+
+.slide {
+    width: 11.11%;
+    height: 100%;
+    flex-shrink: 0;
+}
+
+.slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 0;
+    display: block;
+}
+
+/* Slider Animation */
+@keyframes slide {
+    0% { transform: translateX(0); }
+    11.11% { transform: translateX(-11.11%); }
+    22.22% { transform: translateX(-22.22%); }
+    33.33% { transform: translateX(-33.33%); }
+    44.44% { transform: translateX(-44.44%); }
+    55.55% { transform: translateX(-55.55%); }
+    66.66% { transform: translateX(-66.66%); }
+    77.77% { transform: translateX(-77.77%); }
+    88.88% { transform: translateX(-88.88%); }
+    100% { transform: translateX(0); }
+}
+
+/* Slider Indicators */
+.slider-indicators {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 8px;
+    z-index: 11;
+}
+
+.indicator {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.5);
+    animation: indicatorPulse 18s infinite;
+}
+
+/* Individual indicator timing */
+.indicator:nth-child(1) { animation-delay: 0s; }
+.indicator:nth-child(2) { animation-delay: 2s; }
+.indicator:nth-child(3) { animation-delay: 4s; }
+.indicator:nth-child(4) { animation-delay: 6s; }
+.indicator:nth-child(5) { animation-delay: 8s; }
+.indicator:nth-child(6) { animation-delay: 10s; }
+.indicator:nth-child(7) { animation-delay: 12s; }
+.indicator:nth-child(8) { animation-delay: 14s; }
+.indicator:nth-child(9) { animation-delay: 16s; }
+
+/* Indicator animation */
+@keyframes indicatorPulse {
+    0%, 88.88% { 
+        background: rgba(255, 255, 255, 0.5); 
+        transform: scale(1); 
+    }
+    11.11% { 
+        background: #fff; 
+        transform: scale(1.2); 
+    }
+}
+
+/* Hover effect to pause animation */
+.image-slider:hover .slider-track {
+    animation-play-state: paused;
+}
+
+.image-slider:hover .indicator {
+    animation-play-state: paused;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    .image-slider {
+        height: 150px;
+        margin: 15px auto 20px auto;
+        border-radius: 10px;
+    }
+    
+    .slider-indicators {
+        bottom: 8px;
+        gap: 6px;
+    }
+    
+    .indicator {
+        width: 6px;
+        height: 6px;
+    }
+}
+
+@media (max-width: 480px) {
+    .image-slider {
+        height: 120px;
+        margin: 10px auto 15px auto;
+        border-radius: 8px;
+    }
+    
+    .slider-indicators {
+        bottom: 6px;
+        gap: 4px;
+    }
+    
+    .indicator {
+        width: 5px;
+        height: 5px;
+    }
+}
+
+@media (max-width: 320px) {
+    .image-slider {
+        height: 100px;
+        margin: 8px auto 12px auto;
+    }
+}
+
+/* Fix for better performance */
+.slider-track {
+    will-change: transform;
+}
+
+.indicator {
+    will-change: transform, background;
+}
