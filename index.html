@@ -9,14 +9,28 @@
     <title>HAPPY BIRTHDAY v3 | Aoudumber Bade</title>
     <link rel="stylesheet" href="css/style.css">
     <style>
+        /* Reset and body styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            overflow-x: hidden;
+        }
+
         /* Full Size Image Slider */
         .fullsize-image-slider {
-            width: 100vw;
-            height: 400px;
+            width: 100%;
+            height: 50vh;
+            min-height: 300px;
+            max-height: 500px;
             position: relative;
             overflow: hidden;
             margin: 0;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+            z-index: 1;
         }
 
         .fullsize-slider-track {
@@ -37,6 +51,7 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
+            object-position: center;
             display: block;
         }
 
@@ -47,29 +62,30 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: linear-gradient(45deg, rgba(0,0,0,0.1), transparent);
+            background: linear-gradient(180deg, rgba(0,0,0,0.1), transparent, rgba(0,0,0,0.2));
+            pointer-events: none;
         }
 
         /* Slow Animation */
         @keyframes fullSlide {
             0% { transform: translateX(0); }
-            10% { transform: translateX(0); }
+            8% { transform: translateX(0); }
             11.11% { transform: translateX(-11.11%); }
-            21.11% { transform: translateX(-11.11%); }
+            19.11% { transform: translateX(-11.11%); }
             22.22% { transform: translateX(-22.22%); }
-            32.22% { transform: translateX(-22.22%); }
+            30.22% { transform: translateX(-22.22%); }
             33.33% { transform: translateX(-33.33%); }
-            43.33% { transform: translateX(-33.33%); }
+            41.33% { transform: translateX(-33.33%); }
             44.44% { transform: translateX(-44.44%); }
-            54.44% { transform: translateX(-44.44%); }
+            52.44% { transform: translateX(-44.44%); }
             55.55% { transform: translateX(-55.55%); }
-            65.55% { transform: translateX(-55.55%); }
+            63.55% { transform: translateX(-55.55%); }
             66.66% { transform: translateX(-66.66%); }
-            76.66% { transform: translateX(-66.66%); }
+            74.66% { transform: translateX(-66.66%); }
             77.77% { transform: translateX(-77.77%); }
-            87.77% { transform: translateX(-77.77%); }
+            85.77% { transform: translateX(-77.77%); }
             88.88% { transform: translateX(-88.88%); }
-            98.88% { transform: translateX(-88.88%); }
+            96.88% { transform: translateX(-88.88%); }
             100% { transform: translateX(0); }
         }
 
@@ -141,20 +157,64 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            min-height: calc(100vh - 400px);
-            padding: 20px;
-            box-sizing: border-box;
+            min-height: 50vh;
+            padding: 40px 20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Greetings styles */
+        .greetings {
+            display: flex !important;
+            flex-wrap: wrap !important;
+            justify-content: center !important;
+            gap: 5px !important;
+            margin: 15px 0 !important;
+        }
+
+        /* Button positioning */
+        .btn-container {
+            position: relative;
+            margin-top: 30px;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+        }
+
+        /* Performance optimization */
+        .fullsize-slider-track {
+            will-change: transform;
+        }
+
+        .fullsize-indicator {
+            will-change: transform, background, box-shadow;
+        }
+
+        /* Tablet Responsive */
+        @media (max-width: 1024px) {
+            .fullsize-image-slider {
+                height: 45vh;
+                min-height: 280px;
+                max-height: 400px;
+            }
+            
+            .main-content {
+                padding: 30px 20px;
+                min-height: 55vh;
+            }
         }
 
         /* Mobile Responsive */
         @media (max-width: 768px) {
             .fullsize-image-slider {
-                height: 300px;
+                height: 40vh;
+                min-height: 250px;
+                max-height: 350px;
             }
             
             .main-content {
-                min-height: calc(100vh - 300px);
-                padding: 15px;
+                padding: 25px 15px;
+                min-height: 60vh;
             }
             
             .fullsize-slider-indicators {
@@ -166,16 +226,23 @@
                 width: 10px;
                 height: 10px;
             }
+
+            .greetings {
+                margin: 12px 0 !important;
+                gap: 3px !important;
+            }
         }
 
         @media (max-width: 480px) {
             .fullsize-image-slider {
-                height: 250px;
+                height: 35vh;
+                min-height: 220px;
+                max-height: 300px;
             }
             
             .main-content {
-                min-height: calc(100vh - 250px);
-                padding: 10px;
+                padding: 20px 10px;
+                min-height: 65vh;
             }
             
             .fullsize-slider-indicators {
@@ -187,15 +254,36 @@
                 width: 8px;
                 height: 8px;
             }
+
+            .greetings {
+                margin: 10px 0 !important;
+                gap: 2px !important;
+            }
+
+            .btn-container {
+                margin-top: 25px;
+            }
         }
 
-        /* Performance optimization */
-        .fullsize-slider-track {
-            will-change: transform;
-        }
+        @media (max-width: 320px) {
+            .fullsize-image-slider {
+                height: 30vh;
+                min-height: 200px;
+            }
+            
+            .main-content {
+                padding: 15px 8px;
+            }
 
-        .fullsize-indicator {
-            will-change: transform, background, box-shadow;
+            .fullsize-slider-indicators {
+                bottom: 10px;
+                gap: 6px;
+            }
+            
+            .fullsize-indicator {
+                width: 6px;
+                height: 6px;
+            }
         }
     </style>
 </head>
@@ -229,14 +317,14 @@
     
     <!-- Main Content -->
     <div class="main-content">
-        <div class="greetings" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 5px; margin: 10px 0;">
+        <div class="greetings">
             <span>H</span>
             <span>A</span>
             <span>P</span>
             <span>P</span>
             <span>Y</span>
         </div>
-        <div class="greetings" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 5px; margin: 10px 0;">
+        <div class="greetings">
             <span>B</span>
             <span>I</span>
             <span>R</span>
@@ -246,7 +334,7 @@
             <span>A</span>
             <span>Y</span>
         </div>
-        <div class="greetings" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 5px; margin: 10px 0;">
+        <div class="greetings">
             <span>A</span>
             <span>R</span>
             <span>E</span>
@@ -265,7 +353,7 @@
             <span><br>To my forever favorite, Areeb Akhan! 📸 Happy Birthday, love! Six years of capturing beautiful moments together, <br> and you're still the most photogenic part of every memory.<br> Like a perfectly exposed film, you bring light into every dark room of life. <br>May your birthday be as timeless and beautiful as our love story! 🎞️✨</span>
         </div>
         <!-- Button -->
-        <div style="position: relative; margin-top: 20px; width: 100%; display: flex; justify-content: center;">
+        <div class="btn-container">
             <a href="./heartcaputre.html" class="btn">
                 <svg height="24" width="24" fill="#FFFFFF" viewBox="0 0 24 24" data-name="Layer 1" id="Layer_1" class="sparkle">
                     <path d="M10,21.236,6.755,14.745.264,11.5,6.755,8.255,10,1.764l3.245,6.491L19.736,11.5l-6.491,3.245ZM18,21l1.5,3L21,21l3-1.5L21,18l-1.5-3L18,18l-3,1.5ZM19.333,4.667,20.5,7l1.167-2.333L24,3.5,21.667,2.333,20.5,0,19.333,2.333,17,3.5Z">
